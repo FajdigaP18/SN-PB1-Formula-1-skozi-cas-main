@@ -1,0 +1,38 @@
+% rebase('template/osnova.html', title='Ekipa')
+    
+<head>
+    <h1 class="fs-1 fw-bold" >{{ ekipa }}</h1>
+    <style>  p{text-align: center;}; h1{text-align: left;}</style>
+</head>
+<table class="table">
+    <tbody>
+        <tr>
+            <td>
+                <img src="\static\img\{{ekipa}}.PNG" alt="{{ekipa}}">
+                <div class="fw-bold"> Predhodnje ekipe:</div> {{predhodnjiki}}
+
+                <div class="fw-bold"> Prvi nastop na dirki Formula1: </div>{{prvi_nastop[0]}}
+            </td>
+
+            <td>
+                <div class="fw-bold"><h1>Trenutna voznika: </h1></div>
+            </td>
+            <td onclick="window.location.href='/dirkaci/{{ dirkaca[0][0] }}';" style="cursor: pointer;" >
+                <div><img src="/static/img/d{{dirkaca[0][0]}}.PNG" alt="{{ dirkaca[0][1] }} {{ dirkaca[0][2] }}" height="561px" width="457px"></div>
+
+                <div class="fw-bold" text-align="center">{{ dirkaca[0][5] }} {{ dirkaca[0][2] }} {{ dirkaca[0][3] }}</div>
+            </td>
+            <td onclick="window.location.href='/dirkaci/{{ dirkaca[1][0] }}';" style="cursor: pointer;" >
+                <div><img src="/static/img/d{{ dirkaca[1][0] }}.PNG" alt="{{ dirkaca[1][1] }} {{ dirkaca[1][2] }}" height="561px" width="457px"></div>
+               
+                <div class="fw-bold" text-align="center"> {{ dirkaca[1][5] }} {{ dirkaca[1][2] }} {{ dirkaca[1][3] }} </div>
+            </td>
+        </tr>
+        </tbody>
+</table>
+<div class="fw-bold">
+    Dirkači, ki so dirkali za to ekipo:
+</div>
+% for d in vsi_dirkaci:
+<a onclick="window.location.href='/dirkaci/{{ d[2] }}';" style="cursor: pointer;"> {{ d[0] }} {{ d[1] }};  </a>
+% end

@@ -1,0 +1,38 @@
+% rebase('template/osnova.html', title='Ekipa')
+
+
+<head>
+  <style>  p{text-align: center;}; h1{text-align: left;}</style>
+  <h1 class="fs-1 fw-bold" >{{ ekipa }}</h1>
+  
+</head>
+
+<table>
+  <tbod>
+    <tr>
+      <td><div class="fs-2 fw-bold">VOZNIKI:</div>
+
+        <div>
+        % for d in dirkaci:
+        <a onclick="window.location.href='/dirkaci/{{ d[2] }}';" style="cursor: pointer;">{{ d[0] }} {{ d[1] }}; </a>
+        % end
+        </div>
+      </td>
+      <td>
+        <img src="/static/img/profilepic.jpg" class="img-responsive" alt="Circuit Picture" height="400px" width="300px">
+      </td>
+    </tr>
+    <tr>
+      <td><div class="fs-2 fw-bold">SEZONE:</div>
+
+        <div>
+        % for s in sezone:
+        <a> {{s[0]}}  </a>
+        % end
+        </div>
+      </td>
+    </tr>
+  </tbod>
+</table>
+
+

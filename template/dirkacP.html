@@ -1,0 +1,73 @@
+% rebase('template/osnova.html', title='Dirkači')
+
+<div class="row">
+    <div class="col-md-4">
+      <img src="/static/img/d{{did}}.PNG" class="img-responsive" alt="Profile Picture">
+    </div>
+    <div class="col-md-8">
+      <h1 class="fs-1 fw-bold">{{ dirkac}}</h1>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="fs-6 fw-bold">Narodnost:</td>
+            <td>
+                <p> {{drzavljanstvo}}</p>
+            </td>
+
+          </tr>
+          <tr>
+            <td class="fs-6 fw-bold">Datum rojstva:</td>
+            <td>
+                <p> {{d.split('-')[2]}}.{{d.split('-')[1]}}.{{d.split('-')[0]}} </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="fs-6 fw-bold">Ekipe:</td>
+            <td>
+                % for e in ekipe:
+                <p onclick="window.location.href='/ekipa/{{ e[1] }}';" style="cursor: pointer;"> {{ e[0] }} </p>
+                % end
+            </td>
+          </tr>
+          <tr>
+            <td class="fs-6 fw-bold">Kolikokrat je bil na zmagovalnem odru:</td>
+            % for o in oder:
+              % if o is None:
+                <td>0</td>
+              % else:
+                <td>{{ o[2] }}</td>
+              % end
+            % end
+          </tr>     
+          <tr>
+            <td class="fs-6 fw-bold">Njegove najboljša uverstitev/e:</td>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>UVRSTITEV</th>
+                  <th>EKIPA</th>
+                  <th>DIRKALIŠČE</th>
+                  <th>DATUM</th>
+                </tr>
+              </thead>
+              <tbody>
+                % for u in uvrstitve:
+                % for d in u:
+                <tr>
+                
+                  <td>{{ d[3] }}</td>
+                  <td onclick="window.location.href='/ekipa/{{ d[7] }}';" style="cursor: pointer;">{{ d[4] }}</td>
+                  <td onclick="window.location.href='/dirkalisca/{{ d[0] }}';" style="cursor: pointer;">{{ d[5] }}</td>
+                  <td>{{ d[6] }}</td>
+                  </tr>
+                  % end
+                
+                % end
+              </tbody>
+            </table>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,43 @@
+% rebase('template/osnova.html', title='Dirkališča')
+<head>
+  <style> h1{text-align: center;}</style>
+  <h1 class="fs-1 fw-bold"> Dirkališča </h1>
+
+</head>
+
+<ul class="pagination">
+  % if trenutna_stran > 1:
+      <a class="page-link" href="?page={{ trenutna_stran - 1 }}">&laquo; Prejšna stran </a>
+  % end 
+  % if trenutna_stran < st_strani:
+      <a class="page-link" href="?page={{ trenutna_stran + 1 }}">Naslednja stran &raquo;</a>
+  % end
+</ul>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>IME <button onclick="window.location.href='/dirkalisca/ime^';" style="cursor:pointer" class="button">&uarr;</button><button onclick="window.location.href='/dirkalisca/imed';" style="cursor:pointer" class="button">&darr;</button></th>
+      <th>LOKACIJA <button onclick="window.location.href='/dirkalisca/lokacija^';" style="cursor:pointer" class="button">&uarr;</button><button onclick="window.location.href='/dirkalisca/lokacijad';" style="cursor:pointer" class="button">&darr;</button></th>
+      <th>DRŽAVA <button onclick="window.location.href='/dirkalisca/drzava^';" style="cursor:pointer" class="button">&uarr;</button><button onclick="window.location.href='/dirkalisca/drzavad';" style="cursor:pointer" class="button">&darr;</button></th>
+    </tr>
+  </thead>
+  <tbody>
+    % for d in dirkalisca:
+    <tr onclick="window.location.href='/dirkalisca/{{ d[0] }}';" style="cursor:pointer;">
+      <td><a>{{ d[1] }}</a></td>
+      <td><a>{{ d[2] }}</a></td>
+      <td><a>{{ d[3] }}</a></td>
+    </tr>
+    % end
+  </tbody>
+</table>
+
+<ul class="pagination">
+  % if trenutna_stran > 1:
+  <a class="page-link" href="?page={{ trenutna_stran - 1 }}"> Prejšna stran </a>
+  % end 
+  % if trenutna_stran < st_strani:
+  <a class="page-link" href="?page={{ trenutna_stran + 1 }}">Naslednja stran </a>
+  % end
+</ul>

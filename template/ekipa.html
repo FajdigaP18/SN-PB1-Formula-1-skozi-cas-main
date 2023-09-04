@@ -1,0 +1,52 @@
+% rebase('template/osnova.html', title='Ekipe')
+
+<h1 class="fs-1 fw-bold"> EKIPE</h1>
+
+<div>
+    <form method="get" action="/ekipa/iskanje">
+        <label for="query">Poišči ekipe iz drzave: </label>
+        <input type="text" id="isci" name="isci">
+        <button type="submit" class="button">Išči</button>
+    </form>
+  </div>
+
+  <ul class="pagination">
+    % if trenutna_stran > 1:
+    <a class="page-link" href="?page={{ trenutna_stran - 1 }}">Prejšna stran </a>
+    % end
+    
+    % if trenutna_stran < st_strani:
+    <a class="page-link" href="?page={{ trenutna_stran + 1 }}">Naslednja stran</a>
+    % end
+  </ul>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>IME <button onclick="window.location.href='/ekipa/ime^';" style="cursor:pointer" class="button">&uarr;</button> <button onclick="window.location.href='/ekipa/imed';" style="cursor:pointer" class="button">&darr;</button></th>
+        <th>DRŽAVA <button onclick="window.location.href='/ekipa/drzava^';" style="cursor:pointer" class="button">&uarr;</button> <button onclick="window.location.href='/ekipa/drzavad';" style="cursor:pointer" class="button">&darr;</button></th>       
+      </tr>
+    </thead>
+    <tbody>
+        % for e in ekipe :
+            <tr onclick="window.location.href='/ekipa/{{ e[0] }}';" style="cursor: pointer;">
+                <td>{{ e[1] }}</td>
+                <td>{{ e[2] }}</td>
+            </tr>        
+      % end
+    </tbody>
+  </table>
+
+  <ul class="pagination">
+    <div>Strani: </div>
+      % for p in range(1, trenutna_stran):
+
+          <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+
+      % end
+      % for p in range(trenutna_stran + 1, st_strani + 1):
+
+        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+
+      % end
+  </ul>

@@ -1,0 +1,20 @@
+% rebase('template/osnova.html', title='Iskanje')
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>IME</th>
+        <th>DRŽAVA</th>
+      </tr>
+    </thead>
+    <tbody>
+      % for e in ekipa: 
+        <tr onclick="window.location.href='/ekipa/{{ e[0] }}';" style="cursor: pointer;">
+            <td>{{ e[0] }}</td>
+            <td>{{ e[1] }}</td>
+            <td>{{ e[2] }}</td>
+        </tr>
+      % end
+    </tbody>
+</table>

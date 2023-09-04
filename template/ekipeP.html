@@ -1,0 +1,32 @@
+% rebase('template/osnova.html', title='Ekipe')
+<head>
+    <h1 class="fs-1 fw-bold"> Ekipe v sezoni 2022</h1>
+    <style>  p{text-align: center;}</style>
+</head>
+
+<table class="table">
+    <tbody>
+        % for e in range(0,10, 2):
+        <tr>
+            
+            <td> 
+                <div onclick="window.location.href='/ekipeP/{{ ekipe[e][0]}}';" style="cursor: pointer;">
+                     <img src="static/img/{{ ekipe[e][1] }}.PNG" alt="{{ ekipe[e][1] }}" align="middle">
+                </div> 
+                <div class="fw-bold"> 
+                    <p>{{ ekipe[e][1] }} </p> 
+                </div>
+            </td>
+            <td> 
+                <div onclick="window.location.href='/ekipeP/{{ekipe[e+1][0]}}';" style="cursor: pointer;"> 
+                    <img src="static/img/{{ ekipe[e+1][1] }}.PNG" alt="{{ ekipe[e+1][1] }}" align="middle">
+                </div><div class="fw-bold">
+                    <p>{{ ekipe[ e+1 ][1] }}</p>
+                </div>
+            </td>
+        </tr>
+        % end
+
+    </tbody>
+</table>
+

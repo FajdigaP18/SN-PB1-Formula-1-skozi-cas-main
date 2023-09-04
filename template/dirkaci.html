@@ -1,0 +1,72 @@
+% rebase('template/osnova.html', title='Dirkači')
+<head>
+  <style> h1{text-align: center;} button{text-align: left;}</style>
+  <h1 class="fs-1 fw-bold"> Dirkači </h1>
+</head>
+
+<div>
+  <form method="get" action="/dirkaci/iskanje">
+    <div>
+      <label for="query">   PRIIMEK: </label>
+      <input type="text" id="priimek" name="priimek">
+      <label for="query">   IME:  </label>
+      <input type="text" id="ime" name="ime">
+      <label for="query">   DRŽAVLJANSTVO:  </label>
+      <input type="text" id="drzava" name="drzava">
+    </div>
+    <div></div>
+    <div>    
+      <label for="query">   DATUM ROJSTVA:  </label>
+      <input type="text" id="datum" name="datum">
+      <label for="query">   LETNICA ROJSTVA:  </label>
+      <input type="text" id="letnica" name="letnica">
+      <button type="submit" class="button" > Poišči  </button>
+    </div>
+  </form>
+</div>
+
+<ul class="pagination">
+  % if trenutna_stran > 1:
+  <a class="page-link" href="?page={{ trenutna_stran - 1 }}">Prejšna stran </a>
+  % end
+  
+  % if trenutna_stran < st_strani:
+  <a class="page-link" href="?page={{ trenutna_stran + 1 }}">Naslednja stran </a>
+  % end
+</ul>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>PRIIMEK <button onclick="window.location.href='/dirkaci/priimek^';" style="cursor:pointer" class="button">&uarr;</button><button onclick="window.location.href='/dirkaci/priimekd';" style="cursor:pointer" class="button">&darr;</button></th>
+        <th>IME <button onclick="window.location.href='/dirkaci/ime^';" style="cursor:pointer" class="button">&uarr;</button><button onclick="window.location.href='/dirkaci/imed';" style="cursor:pointer" class="button">&darr;</button></th>
+        <th>DRŽAVLJANSTVO <button onclick="window.location.href='/dirkaci/drzava^';" style="cursor:pointer" class="button">&uarr;</button><button onclick="window.location.href='/dirkaci/drzavad';" style="cursor:pointer" class="button">&darr;</button></th>
+        <th>DATUM ROJSTVA <button onclick="window.location.href='/dirkaci/rojstvo^';" style="cursor:pointer" class="button">&uarr;</button><button onclick="window.location.href='/dirkaci/rojstvod';" style="cursor:pointer" class="button">&darr;</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      % for d in dirkaci:
+      <tr onclick="window.location.href='/dirkaci/{{ d[4] }}';" style="cursor: pointer;">
+        <td>{{ d[1] }}</td>
+        <td>{{ d[0] }}</td>
+        <td>{{ d[2] }}</td>
+        <td>{{ d[3].split('-')[2]}}.{{d[3].split('-')[1]}}.{{d[3].split('-')[0]}}</td>
+      </tr>
+      % end
+    </tbody>
+  </table>
+
+
+<ul class="pagination">
+  <div>Strani: </div>
+    % for p in range(1, trenutna_stran):
+
+        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+
+    % end
+    % for p in range(trenutna_stran + 1, st_strani + 1):
+
+      <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+
+    % end
+</ul>

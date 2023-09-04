@@ -1,0 +1,16 @@
+% rebase('template/osnova.html', title='Dirkališče')
+
+<div class="row mx-auto mt-5">
+    <div class="col-md-4">
+      <img src="/static/img/circuit.png" class="img-responsive" alt="Circuit Picture" height="400px" width="300px">
+    </div>
+    <div class="col-md-8 mx-auto">
+      <h1 class="ml-3 fs-3">Dirkališče na sporedu formule 1</h1>
+      <p class="ml-3 mt-3 fw-bold">{{ dirkalisce }}</p>
+      
+      % for n in kdo:
+      <p onclick="window.location.href='/dirkaci/{{ n[5] }}';" style="cursor: pointer;" class="ml-3 mt-3">Ime in priimek dirkalča, ki je največkrat zmagal na tej progi: {{n[2]}} {{n[3]}}</p>
+      <p class="ml-3 mt-3">Število zmag: {{n[4]}}</p>
+      % end
+    </div>
+</div>    
